@@ -9,12 +9,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
 
-class User extends Model implements AuthenticatableContract, AuthorizableContract
+class Bagian extends Model implements AuthenticatableContract, AuthorizableContract
 {
     use Authenticatable, Authorizable, HasFactory;
-    protected $guarded = [
-        'id'
+
+    public $table = 'tbagian';
+    public $primaryKey = 'IdBagian';
+    protected $fillable = [
+        'NamaBagian',
+        'Yonma',
+        'UrutanBagian'
     ];
-    protected $table = 'users';
-    protected $primaryKey = 'id';
+    public $timestamps = false;
 }

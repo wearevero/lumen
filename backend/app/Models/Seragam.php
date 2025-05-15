@@ -8,13 +8,20 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class User extends Model implements AuthenticatableContract, AuthorizableContract
+class Seragam extends Model implements AuthenticatableContract, AuthorizableContract
 {
     use Authenticatable, Authorizable, HasFactory;
+
+    public $table = 'tseragam_karyawan';
+    public $primaryKey = 'IdSeragam';
     protected $guarded = [
-        'id'
+        'IdSeragam',
     ];
-    protected $table = 'users';
-    protected $primaryKey = 'id';
+    public $timestamps = false;
+    public function karyawan(): BelongsTo
+    {
+        return $this->belongsTo(Karyawan::class, 'IdKaryawan', 'IdKaryawan');
+    }
 }
