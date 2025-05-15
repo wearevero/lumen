@@ -74,3 +74,5 @@ $router->group(
         });
     }
 );
+
+$router->post('/login', ['as' => 'auth.login', 'uses' => 'AuthController@login']);

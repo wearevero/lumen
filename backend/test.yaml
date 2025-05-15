@@ -1,0 +1,10 @@
+config:
+  target: 'http://localhost:3000'   # Ganti dengan URL servermu
+  phases:
+    - duration: 10                   # Durasi pengujian dalam detik
+      arrivalRate: 100               # Jumlah request per detik
+
+scenarios:
+  - flow:
+      - get:
+          url: '/api/v1/echo?message=hello&name=world' 

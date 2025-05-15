@@ -17,9 +17,20 @@ class KaryawanController extends Controller
     public function index(Request $request): JsonResponse
     {
 
-        $karyawan = Karyawan::where('Aktif', 'Ya')->with('bagian')->paginate(10);
-
+        // $query = Karyawan::where('Aktif', 'Ya')->with('bagian');
+        $karyawan = Karyawan::all();
         $jumlah = $karyawan->count();
+
+        // if ($request->has('search')) {
+        //     $search = $request->input('search');
+        //     $query->where(function ($q) use ($search) {
+        //         $q->where('NamaLengkap', 'like', '%' . $search . '%')
+        //             ->orWhere('NikKaryawan', 'like', '%' . $search . '%')
+        //             ->orWhere('Jabatan', 'like', '%' . $search . '%');
+        //     });
+        // }
+
+        // $karyawan = $query->paginate(10);
 
         return response()->json([
             'status' => 200,
