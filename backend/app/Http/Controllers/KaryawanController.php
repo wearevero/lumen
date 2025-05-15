@@ -17,10 +17,14 @@ class KaryawanController extends Controller
     public function index(Request $request): JsonResponse
     {
 
-        $karyawan = Karyawan::all();
+        $karyawan = Karyawan::where('Aktif', 'Ya')->with('bagian')->paginate(10);
+
+        $jumlah = $karyawan->count();
 
         return response()->json([
+            'status' => 200,
             'success' => true,
+            'jumlah' => $jumlah,
             'data' => $karyawan,
         ]);
     }
