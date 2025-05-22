@@ -12,7 +12,7 @@ $router->get('/', function () use ($router) {
 });
 
 // route for generating a random key string
-$router->get('/key', function () {
+$router->get('/api/v1/key', function () {
     return Str::random(32);
 });
 
@@ -75,4 +75,5 @@ $router->group(
     }
 );
 
-$router->post('/login', ['as' => 'auth.login', 'uses' => 'AuthController@login']);
+$router->post('/api/v1/login', ['as' => 'auth.login', 'uses' => 'AuthController@login']);
+$router->post('/api/v1/register', ['as' => 'auth.register', 'uses' => 'AuthController@register']);
